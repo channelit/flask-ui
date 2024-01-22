@@ -1,0 +1,12 @@
+<form (ngSubmit)="onSubmit()">
+  <mat-grid-list cols="1" rowHeight="100px" id="search-grid">
+    <mat-grid-tile [colspan]="1">
+      <mat-form-field>
+        <mat-label>Search</mat-label>
+        <input [(ngModel)]="searchText" matInput placeholder="Type here to unleash the power of curiosity!"
+               name="search">
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1">{{ searchResult }}</mat-grid-tile>
+  </mat-grid-list>
+</form>

@@ -1,9 +1,9 @@
 from flask import Flask
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/')
 
 
-@app.route('/')
+@app.route('/api')
 def main():  # put application's code here
     return 'Hello World!'
 

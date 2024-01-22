@@ -6,7 +6,14 @@ pip freeze > requirements.txt
 pip install -r requirements.txt
 ```
 
-#### pre req
+#### pre req for dev
 ```shell
 npm install -g @angular/cli
 ```
+
+#### Docker
+```shell
+docker build . -t fui
+docker run --rm --name=fui -P fui python app.py
+```
+

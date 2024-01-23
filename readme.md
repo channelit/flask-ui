@@ -17,3 +17,8 @@ docker build . -t fui
 docker run --rm --name=fui -p 5000:5000 fui python app.py
 ```
 
+#### ng build
+```shell
+ng build --configuration=production --base-href=/ui/
+```
+

@@ -14,7 +14,7 @@ npm install -g @angular/cli
 #### Docker
 ```shell
 docker build . -t fui
-docker run --rm --name=fui -P fui
+docker run --rm  --network=host --name=fui fui
 ```
 
 #### ng build

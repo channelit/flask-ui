@@ -5,21 +5,16 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class RestService {
-  private baseURL = 'https://en.wikipedia.org/w/api.php';
+  private baseURL = '/api';
 
   constructor(private http: HttpClient) {
   }
 
-  search(data: any) {
-    return this.http.get(this.baseURL, {
-      params: {
-        action: 'query',
-        format: 'json',
-        list: 'search',
-        srsearch: data,
-        origin: '*',
-        srlimit: 100,
-      },
-    });
+  search(search_text: any) {
+    return this.http.post(this.baseURL,
+      {
+        "search_text": search_text
+      }
+    );
   }
 }

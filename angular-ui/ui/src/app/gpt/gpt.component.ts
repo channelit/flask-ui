@@ -5,7 +5,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {RestService} from "../rest/rest.service";
 import {FormsModule} from "@angular/forms";
-import {NgForOf} from "@angular/common";
+import {JsonPipe, NgForOf} from "@angular/common";
+import {MatCard, MatCardContent} from "@angular/material/card";
 
 @Component({
   selector: 'app-gpt',
@@ -17,21 +18,24 @@ import {NgForOf} from "@angular/common";
     MatFormFieldModule,
     MatInput,
     FormsModule,
-    NgForOf
+    NgForOf,
+    JsonPipe,
+    MatCardContent,
+    MatCard
   ],
   templateUrl: './gpt.component.html',
   styleUrl: './gpt.component.css'
 })
 export class GptComponent {
   searchText: any;
-  searchResult: string | undefined;
+  searchResult: any;
 
   constructor(private rest: RestService) {
   }
 
   onSubmit() {
     this.rest.search(this.searchText).subscribe((res: any) => {
-      this.searchResult = res.query.search;
+      this.searchResult = res.pages;
       console.log(this.searchResult);
     });
   }

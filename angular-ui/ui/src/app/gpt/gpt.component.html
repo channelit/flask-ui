@@ -7,6 +7,10 @@
                name="search">
       </mat-form-field>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="1">{{ searchResult }}</mat-grid-tile>
+    <mat-grid-tile colspan="1" *ngFor="let result of searchResult" [colspan]="1">
+      <mat-card id="result-card">
+        <mat-card-content>{{ result.excerpt }}</mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
   </mat-grid-list>
 </form>

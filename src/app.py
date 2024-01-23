@@ -1,15 +1,21 @@
+import json
 import os
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, request
+
+from api import Api
 
 app = Flask(__name__)
 
 ui_folder = './ui'
 print(ui_folder)
+search_api = Api()
 
 
-@app.route('/api')
+@app.route('/api', methods=['POST'])
 def api():
-    return 'Hello World!'
+    user_input = request.get_json()
+    search_text = user_input['search_text']
+    return search_api.get_results(search_text)
 
 
 @app.route('/ui/<path:path>', methods=['GET'])

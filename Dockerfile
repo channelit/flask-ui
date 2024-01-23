@@ -1,10 +1,10 @@
-FROM python:3.9.18-slim
+FROM python:3.12.1-slim
 
 COPY src /opt/program
+COPY ./requirements.txt ./opt/program/requirements.txt
 WORKDIR /opt/program
 
-COPY requirements.txt .
+RUN pip install -r requirements.txt
 
-RUN pip3 install -r requirements.txt
-
-EXPOSE 5000
+ENTRYPOINT ["python"]
+CMD ["app.py" ]

@@ -14,7 +14,7 @@ npm install -g @angular/cli
 #### Docker
 ```shell
 docker build . -t fui
-docker run --rm --name=fui -p 5000:5000 fui python app.py
+docker run --rm --name=fui -P fui
 ```
 
 #### ng build
@@ -22,3 +22,7 @@ docker run --rm --name=fui -p 5000:5000 fui python app.py
 ng build --configuration=production --base-href=/ui/
 ```
 
+#### Run locally
+```shell
+python src/app.py
+```

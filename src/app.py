@@ -1,8 +1,10 @@
 import os
+from flask import Flask, send_from_directory
 
-from flask import Flask, send_from_directory, url_for
+app = Flask(__name__)
 
-app = Flask(__name__, root_path=os.path.join(os.getcwd()))
+ui_folder = './ui'
+print(ui_folder)
 
 
 @app.route('/api')
@@ -10,16 +12,25 @@ def api():
     return 'Hello World!'
 
 
+@app.route('/ui/<path:path>', methods=['GET'])
+def static_proxy(path):
+    if path.endswith(".js"):
+        return send_from_directory(ui_folder, path, mimetype="application/javascript")
+    elif path.endswith(".css"):
+        return send_from_directory(ui_folder, path, mimetype="text/css")
+    else:
+        return send_from_directory(ui_folder, path)
+
+
+@app.route('/ui')
+def root():
+    return send_from_directory(ui_folder, 'index.html')
+
+
 @app.errorhandler(404)
 def not_found(e):
-    return send_from_directory(app.static_folder, 'index.html')
-
-
-@app.route('/ui/')
-@app.route('/ui/<path:path>')
-def serve_ui_app():
-    return send_from_directory('static/ui', 'index.html')
+    return send_from_directory(ui_folder, 'index.html')
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0", port=8080, debug=True)
